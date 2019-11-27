@@ -1,4 +1,11 @@
+Following the official React Tutorials for Tic Tac Toe - [React Tutorials](https://reactjs.org/tutorial/tutorial.html#before-we-start-the-tutorial)
+
 When you first clone the repo, do: `npm install`.
+
+NOTE:
+Everything below this line was generated automatically with `npx create-react-app my-app`
+
+## 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
