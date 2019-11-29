@@ -46,7 +46,8 @@ class Game extends React.Component {
         movePosition: Array(2).fill(null)
       }],
       stepNumber: 0,
-      xIsNext: true
+      xIsNext: true,
+      showMovesInReverse: false
     }
   }
 
@@ -79,13 +80,26 @@ class Game extends React.Component {
     });
   }
 
+  reverseMoveList() {
+    this.setState({
+      showMovesInReverse: !this.state.showMovesInReverse
+    });
+  }
+
   render() {
-    const history = this.state.history;
+    let history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
+    if (this.state.showMovesInReverse) {
+      history = history.slice(0).reverse();
+    }
 
     const moves = history.map((step, move) => {
-      const movePosition = history[move].movePosition; 
+      const movePosition = history[move].movePosition;
+      if (this.state.showMovesInReverse) {
+        move = history.length - move - 1;
+      }
+      
       let desc = move ?
         'Go to move #' + move + " - " + JSON.stringify(movePosition) :
         'Go to game start';
@@ -117,6 +131,7 @@ class Game extends React.Component {
         </div>
         <div className="game-info">
           <div>{status}</div>
+          <button onClick={() => this.reverseMoveList()}>Show Moves In Reverse Order</button>
           <ol>{moves}</ol>
         </div>
       </div>
