@@ -99,9 +99,9 @@ class Game extends React.Component {
       if (this.state.showMovesInReverse) {
         move = history.length - move - 1;
       }
-      
+
       let desc = move ?
-        'Go to move #' + move + " - " + JSON.stringify(movePosition) :
+        'Go to move #' + move + " - " + "[Column: " + movePosition[0] + ", Row: " + movePosition[1] + "]" + " (" + ((move % 2 == 1) ? "X" : "O") + ")" :
         'Go to game start';
       if (this.state.stepNumber === move) {
         desc = <b>{desc}</b>
@@ -120,6 +120,8 @@ class Game extends React.Component {
     } else {
       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
     }
+
+    const x = ["ads", "basd"];
 
     return (
       <div className="game">
